@@ -28,7 +28,7 @@ rc=v1/vpms;
 dt=1/6/rpm; %Dtheta es 1 grado
 
 if (fequ>1.03)
-    feq=1.03;
+    feq=1.03; %poder calorífico liberado
 else
     feq=fequ;
 end

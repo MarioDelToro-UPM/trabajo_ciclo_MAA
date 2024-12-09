@@ -2,29 +2,29 @@ clear
 
 %s1=111;
 %b1=130;
-lambda=0.25;
-rg=8.5;
+lambda=0.3;
+rg=9.5;
 rca=30;
 aae=40;
 aicb=10;
-dcb1=50;
-rpm=2700;
-pe1=1;
+dcb1=40;
+rpm=7500;
 Ta=300;
-pa1=1;
+pa1=3;
+pe1=0.8*pa1;
 fequ=1.2;
 Tw=500;
-a=5;
+a=5.4;
 n=3;
-NO=95;
+NO=98;
 gamma1=1.3;
 gamma2=1.3;
 miter=3;
-ncil=4;% 
+ncil=6;% 
 
 %r21=s1/2;
 %vd=3.1415927*b1^2/4*s1/1000;
-vd=1750/4;
+vd=3000/ncil;
 
 % ******************************************************
 % *   QANG : ESCRITURA DE FICHEROS (SI=1,NO=resto)     *
