@@ -22,7 +22,7 @@ NO=95;
 gamma1=1.3;
 gamma2=1.3;
 miter=3;
-ncil=12;% 
+ncil=10;% 
 
 r21=s1/2;
 vd=pi*b1^2/4*s1/1000;

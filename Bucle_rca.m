@@ -1,10 +1,10 @@
 clear
 
-%s1=111;
-%b1=130;
+s1=95; %placeholder, creo que está más o menos bien
+b1=82; %placeholder, creo que está más o menos bien
 lambda=0.3;
 rg=9.5;
-rca=30;
+%rca=30;
 aae=40;
 aicb=10;
 dcb1=40;
@@ -24,30 +24,28 @@ ncil=6;
 
 %r21=s1/2;
 %vd=3.1415927*b1^2/4*s1/1000;
-vd=3000/ncil;
+vd=pi*(b1/2)^2*s1/1000;
+    vd
 
-% ******************************************************
-% *   QANG : ESCRITURA DE FICHEROS (SI=1,NO=resto)     *
-% ******************************************************
-QANG=1;
-ORIG=0;
-
-%% Llamada al programa
+QANG = 1;
+ORIG = 0;
 
 jjj=0;
- 
-for s1=80:2:82
 
+for rca=25:5:30
+
+       b=b1/1000;
        s=s1/1000;
-       b=(4*vd/s/100/pi)^(1/2)/100;
+
        r2=s/2;
        lb=2*s;
        dcb=round(dcb1*b/s);
        aicb=round(0.4*dcb);
        Avalv_a=0.35*pi*b^2/4;
        Avalv_e=0.25*pi*b^2/4;
-   
- iii=0;
+
+
+       iii=0;
  jjj=jjj+1;  
  for rpm=1000:500:7000
 
@@ -59,9 +57,9 @@ for s1=80:2:82
 
   princotto
 
-  %Estimaci�n de p�rdidas por rozamiento sin bombeo
+  %Estimación de pérdidas por rozamiento sin bombeo
 
-      FMEP=1*(0.97+0.8*(Up/17.2)+0.6*(Up/17.2)^2); %Presi�n media de fricci�n en bar
+      FMEP=1*(0.97+0.8*(Up/17.2)+0.6*(Up/17.2)^2); %Presión media de fricción en bar
       IMEP=Trabajo/vd*10;  % PMI en bar
       ETAM=(IMEP-FMEP)/IMEP;
       BMEP=ETAM*IMEP;
@@ -70,7 +68,7 @@ for s1=80:2:82
       Rend_e=Rend*ETAM;
       BSFC=3600000000/Rend_e/Li;  %BSFC en g/kWh
 
- %C�lculo detonaci�n
+ %Cálculo detonación
  Pdet=0;
  gamma=1.3;
  ide=180+rca;
@@ -108,3 +106,5 @@ for s1=80:2:82
 end
 
 plot_VEC
+
+
