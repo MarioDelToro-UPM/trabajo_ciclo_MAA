@@ -10,3 +10,8 @@
 *.out
 *.ist
 *.lof
+*.DS_Store
+*.log
+*.lot
+*.sinctex.gz
+*.toc
