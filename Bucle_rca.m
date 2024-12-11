@@ -1,7 +1,7 @@
 clear
 
-s1=95; %placeholder, creo que está más o menos bien
-b1=82; %placeholder, creo que está más o menos bien
+s1=82; %placeholder, creo que está más o menos bien
+b1=95; %placeholder, creo que está más o menos bien
 lambda=0.3;
 rg=9.5;
 %rca=30;
@@ -25,7 +25,6 @@ ncil=6;
 %r21=s1/2;
 %vd=3.1415927*b1^2/4*s1/1000;
 vd=pi*(b1/2)^2*s1/1000;
-    vd
 
 QANG = 1;
 ORIG = 0;
