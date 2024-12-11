@@ -1,0 +1,16 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\'{I}ndice de figuras}{\es@scroman {i}}{section*.2}%
+\contentsline {section}{Índice de tablas}{\es@scroman {ii}}{section*.3}%
+\contentsline {section}{Acrónimos}{\es@scroman {iii}}{section*.4}%
+\contentsline {section}{\numberline {1}Sección}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Subseccion}{1}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Citar referencias y acrónimos}{1}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.2}Enumeraciones}{1}{subsubsection.1.1.2}%
+\contentsline {subsubsection}{\numberline {1.1.3}Figuras}{1}{subsubsection.1.1.3}%
+\contentsline {subsubsection}{\numberline {1.1.4}Ecuaciones}{3}{subsubsection.1.1.4}%
+\contentsline {subsubsection}{\numberline {1.1.5}Tablas}{3}{subsubsection.1.1.5}%
+\contentsline {subsubsection}{\numberline {1.1.6}Código}{5}{subsubsection.1.1.6}%
+\contentsline {section}{Referencias}{6}{section*.9}%
+\contentsline {section}{Anexos}{6}{section*.9}%
+\contentsline {section}{Anexos}{6}{section*.10}%
+\contentsline {section}{\numberline {A}Título del anexo}{6}{appendix.Alph1}%
