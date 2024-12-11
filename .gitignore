@@ -3,3 +3,10 @@
 *.o
 *.vim
 *.asv
+*.xmpi
+*.acn
+*.glo
+*.aux
+*.out
+*.ist
+*.lof
