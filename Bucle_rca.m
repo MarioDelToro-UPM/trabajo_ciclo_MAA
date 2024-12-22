@@ -1,52 +1,63 @@
 clear
 
-s1=82; %placeholder, creo que está más o menos bien
-b1=95; %placeholder, creo que está más o menos bien
+s1=62;
+b1=101;
 lambda=0.3;
-rg=9.5;
+rg=7.5;
 %rca=30;
 aae=40;
 aicb=10;
 dcb1=40;
-rpm=7500;
+rpm=1000;
 Ta=300;
-pa1=3;
-pe1=0.8*pa1;
+TURBO = 0;
 fequ=1.2;
 Tw=500;
 a=5.4;
 n=3;
-NO=98;
+NO=100;
 gamma1=1.3;
 gamma2=1.3;
 miter=3;
 ncil=6;
 
+if TURBO == 1
+    pa1=3;
+    pe1=0.8*pa1;
+else 
+    pa1=1;
+    pe1=1;
+end
+
 %r21=s1/2;
 %vd=3.1415927*b1^2/4*s1/1000;
-vd=pi*(b1/2)^2*s1/1000;
+vd=3000/ncil;
 
-QANG = 1;
-ORIG = 0;
+s=s1/1000;
+b=b1/1000;
+r2=s/2;
+lb=2*s;
+dcb=round(dcb1*b/s);
+%aicb=round(0.4*dcb);
+Avalv_a=0.4*pi*b^2/4;
+Avalv_e=0.3*pi*b^2/4;
+
+% ******************************************************
+% *   QANG : ESCRITURA DE FICHEROS (SI=1,NO=resto)     *
+% ******************************************************
+QANG=1;
+ORIG=0;
+
+%% Llamada al programa
 
 jjj=0;
+ 
+for rca=0:5:60
 
-for rca=25:5:30
-
-       b=b1/1000;
-       s=s1/1000;
-
-       r2=s/2;
-       lb=2*s;
-       dcb=round(dcb1*b/s);
-       aicb=round(0.4*dcb);
-       Avalv_a=0.35*pi*b^2/4;
-       Avalv_e=0.25*pi*b^2/4;
-
-
-       iii=0;
+   
+ iii=0;
  jjj=jjj+1;  
- for rpm=1000:500:7000
+ for rpm=1000:500:9000
 
  iii=iii+1;
   
@@ -100,10 +111,9 @@ for rca=25:5:30
  VEC(3,jjj,iii)=Pow;
  VEC(4,jjj,iii)=Par;
  VEC(5,jjj,iii)=Pdet; 
+ VEC(6,jjj,iii)=Rend_vol;
 
   end
 end
 
 plot_VEC
-
-

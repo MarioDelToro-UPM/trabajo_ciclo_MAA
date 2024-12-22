@@ -1,7 +1,7 @@
 clear
 
-%s1=111;
-%b1=130;
+s1=62;
+b1=101;
 lambda=0.3;
 rg=7.5;
 rca=30;
@@ -43,16 +43,16 @@ ORIG=0;
 
 jjj=0;
  
-for s1=60:2:70
+for pav=0.2:0.01:0.3
 
        s=s1/1000;
-       b=(4*vd/s/100/pi)^(1/2)/100;
+       b=b1/1000;
        r2=s/2;
        lb=2*s;
        dcb=round(dcb1*b/s);
        %aicb=round(0.4*dcb);
        Avalv_a=0.4*pi*b^2/4;
-       Avalv_e=0.3*pi*b^2/4;
+       Avalv_e=pav*pi*b^2/4;
    
  iii=0;
  jjj=jjj+1;  
@@ -66,9 +66,9 @@ for s1=60:2:70
 
   princotto
 
-  %Estimaci髇 de p閞didas por rozamiento sin bombeo
+  %Estimaci贸n de p茅rdidas por rozamiento sin bombeo
 
-      FMEP=1*(0.97+0.8*(Up/17.2)+0.6*(Up/17.2)^2); %Presi髇 media de fricci髇 en bar
+      FMEP=1*(0.97+0.8*(Up/17.2)+0.6*(Up/17.2)^2); %Presi贸n media de fricci贸n en bar
       IMEP=Trabajo/vd*10;  % PMI en bar
       ETAM=(IMEP-FMEP)/IMEP;
       BMEP=ETAM*IMEP;
@@ -77,7 +77,7 @@ for s1=60:2:70
       Rend_e=Rend*ETAM;
       BSFC=3600000000/Rend_e/Li;  %BSFC en g/kWh
 
- %C醠culo detonaci髇
+ %C谩lculo detonaci贸n
  Pdet=0;
  gamma=1.3;
  ide=180+rca;

@@ -2,23 +2,23 @@
 clear
 
 
-s1=111;
-b1=130;
-lambda=0.25;
-rg=8.5;
+s1=60;
+b1=103;
+lambda=0.3;
+rg=7.5;
 rca=30;
 aae=40;
 aicb=10;
-dcb=50;
-rpm=2000;
+dcb=40;
+rpm=1000;
 pa1=1;
 Ta=300;
 pe1=1;
 fequ=1.2; %dosado equivalente, combustible quemado
 Tw=500;
-a=5;
+a=5.4;
 n=3;
-NO=102;
+NO=100;
 gamma1=1.3;
 gamma2=1.3;
 miter=3;
@@ -48,8 +48,8 @@ pa=pa1*100000;
 pe=pe1*100000;
 qr=vd/1000000;
 
-Avalv_a=0.33*pi*b^2/4;
-Avalv_e=0.28*pi*b^2/4;
+Avalv_a=0.4*pi*b^2/4;
+Avalv_e=0.3*pi*b^2/4;
 %dcb=round(dcb1*b/s);
 %aicb=round(dcb*.4);
 princotto
