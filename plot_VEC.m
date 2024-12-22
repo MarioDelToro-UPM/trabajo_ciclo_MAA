@@ -25,7 +25,7 @@ figure()
 hold on
 
 for pvj=1:NumAux
- pBMEP(pvj)=plot(VRpm,VecBMEP(pvj,:));
+ pBMEP(pvj)=plot(VRpm,VecBMEP(pvj,:), DisplayName=num2str(pvj));
 end
 
 grid on
@@ -35,6 +35,7 @@ title('BMEP vs. rpm','fontsize',14)
 
 xlabel('rpm','fontsize',14)
 ylabel('BMEP(bar)','fontsize',14)
+legend('show')
 
 
 figure()
@@ -42,7 +43,7 @@ figure()
 hold on
 
 for pvj=1:NumAux
- pBPow(pvj)=plot(VRpm,VecBPow(pvj,:));
+ pBPow(pvj)=plot(VRpm,VecBPow(pvj,:), DisplayName=num2str(pvj));
 end
 
 
@@ -54,6 +55,7 @@ title('Potencia vs. rpm','fontsize',14)
 
 xlabel('rpm','fontsize',14)
 ylabel('Potencia al freno (kW)','fontsize',14)
+legend('show')
 
 %set(gca,'fontsize',14)
 %set(gca,'xtick',[0 90 180 270 360 450 540 630 720])

@@ -8,10 +8,9 @@ rca=30;
 aae=40;
 aicb=10;
 dcb1=40;
-rpm=7500;
+rpm=2000;
 Ta=300;
-pa1=3;
-pe1=0.8*pa1;
+TURBO = 0;
 fequ=1.2;
 Tw=500;
 a=5.4;
@@ -21,6 +20,14 @@ gamma1=1.3;
 gamma2=1.3;
 miter=3;
 ncil=6;
+
+if TURBO == 1
+    pa1=3;
+    pe1=0.8*pa1;
+else 
+    pa1=1;
+    pe1=1;
+end
 
 %r21=s1/2;
 %vd=3.1415927*b1^2/4*s1/1000;
@@ -36,7 +43,7 @@ ORIG=0;
 
 jjj=0;
  
-for s1=80:2:82
+for s1=60:2:84
 
        s=s1/1000;
        b=(4*vd/s/100/pi)^(1/2)/100;
@@ -44,12 +51,12 @@ for s1=80:2:82
        lb=2*s;
        dcb=round(dcb1*b/s);
        aicb=round(0.4*dcb);
-       Avalv_a=0.35*pi*b^2/4;
-       Avalv_e=0.25*pi*b^2/4;
+       Avalv_a=0.4*pi*b^2/4;
+       Avalv_e=0.3*pi*b^2/4;
    
  iii=0;
  jjj=jjj+1;  
- for rpm=1000:500:7000
+ for rpm=1000:500:9000
 
  iii=iii+1;
   
