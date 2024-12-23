@@ -53,6 +53,7 @@ iii=0;
 for rpm=1000:500:9500
 
 aicb = Initcomb(rpm);    
+%aicb=10;
 rca = Ret_adm(rpm);
 aae = Avn_esc(rpm);
 

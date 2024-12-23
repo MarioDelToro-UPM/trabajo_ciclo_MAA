@@ -7,7 +7,7 @@ b1=101;
 lambda=0.3;
 rg=9.5;
 dcb=40;
-rpm=9000;
+rpm=2000;
 TURBO = 1;
 Ta=300;
 fequ=1.2; %dosado equivalente, combustible quemado
@@ -25,7 +25,7 @@ aae =Avn_esc(rpm);
 aicb=Initcomb(rpm);
 
 if TURBO == 1
-    pa1=1.9;
+    pa1=2;
     pe1=0.8*pa1;
 
 else

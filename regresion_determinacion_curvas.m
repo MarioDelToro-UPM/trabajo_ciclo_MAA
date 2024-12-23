@@ -42,7 +42,7 @@ ang_aicb = [-16, -16, -14, -12, -12, -12, -10, -10, -8, -8, -8,...
 coeff_aicb = polyfit(rpm_aicb, ang_aicb, 6);
 
 count=0;
-for j=0:250:9000
+for j=1000:250:9000
     count=count+1;
     rpm2(count)=j;
     RCA_a(count) = RCA(j, coeff_adm);

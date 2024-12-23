@@ -22,7 +22,7 @@ miter=3;
 ncil=6;
 
 if TURBO == 1
-    pa1=3;
+    pa1=2;
     pe1=0.8*pa1;
 else 
     pa1=1;
