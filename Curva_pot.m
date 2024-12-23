@@ -50,7 +50,7 @@ ORIG=0;
 
 
 iii=0;
-for rpm=1000:500:9000
+for rpm=1000:500:9500
 
 aicb = Initcomb(rpm);    
 rca = Ret_adm(rpm);
