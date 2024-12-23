@@ -1,31 +1,31 @@
   
   ADMISIÓN: 
-T1P= 357.02    K         P1P= 2.27      bar
-H1P= 500.82    J         U1P= 385.25    J
-Wadm= 67.84     J
-Hin= 402.41    J
-Masa= 1.1924    g
+T1P= 357.10    K         P1P= 2.06      bar
+H1P= 453.12    J         U1P= 348.55    J
+Wadm= 61.34     J
+Hin= 364.47    J
+Masa= 1.0786    g
   
   COMPRESIÓN: 
-T2= 498.55    K         P2= 9.51      bar
-H2= 699.35    J         U2= 537.96    J
-WC= -150.78   J         QC= -1.94     J
+T2= 628.43    K         P2= 23.54     bar
+H2= 797.40    J         U2= 613.38    J
+WC= -263.83   J         QC= -1.01     J
   
   COMBUSTIÓN: 
-T3= 3623.16   K         P3= 168.07    bar
+T3= 2892.79   K         P3= 56.32     bar
 H3= 0.00      J         U3= 0.00      J
-WComb= -279.88   J      QComb= 222.61    J
+WComb= 686.88    J      QComb= 103.57    J
   
   EXPANSIÓN: 
-T4= 2000.99   K         P4= 14.61     bar
-H4= 2806.92   J         U4= 2159.17   J
-Wexp= 1634.09   J       Qexp= 116.31    J
+T4= 2046.26   K         P4= 13.52     bar
+H4= 2596.47   J         U4= 1997.29   J
+Wexp= 774.70    J       Qexp= 51.56     J
   
   ESCAPE: 
-T5= 1341.35   K         P5= 2.58      bar
-H5= 182.11    J         U5= 50.67     J
-Wesc= -2.73     J
-Hout= 2111.23   J
+T5= 1361.74   K         P5= 2.32      bar
+H5= 163.22    J         U5= 45.42     J
+Wesc= -0.13     J
+Hout= 1952.00   J
   
-Trabajo realizado 1268.53   J
-Calor cedido    336.98    J
+Trabajo realizado 1258.95   J
+Calor cedido    154.13    J
