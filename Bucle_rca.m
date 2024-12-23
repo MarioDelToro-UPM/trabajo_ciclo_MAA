@@ -3,14 +3,14 @@ clear
 s1=62;
 b1=101;
 lambda=0.3;
-rg=7.5;
+rg=9.5;
 %rca=30;
 aae=40;
 aicb=10;
 dcb1=40;
 rpm=1000;
 Ta=300;
-TURBO = 0;
+TURBO = 1;
 fequ=1.2;
 Tw=500;
 a=5.4;
@@ -22,7 +22,7 @@ miter=3;
 ncil=6;
 
 if TURBO == 1
-    pa1=3;
+    pa1=2;
     pe1=0.8*pa1;
 else 
     pa1=1;
@@ -110,8 +110,8 @@ for rca=0:5:60
  VEC(2,jjj,iii)=BMEP;%3600000/Li/Rend_e;
  VEC(3,jjj,iii)=Pow;
  VEC(4,jjj,iii)=Par;
- VEC(5,jjj,iii)=Pdet; 
- VEC(6,jjj,iii)=Rend_vol;
+ VEC(5,jjj,iii)=Rend_vol;
+ PelDet(jjj,iii)=Pdet;
 
   end
 end

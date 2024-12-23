@@ -3,7 +3,7 @@ clear
 s1=62;
 b1=101;
 lambda=0.3;
-rg=7.5;
+rg=9.5;
 rca=30;
 aae=40;
 aicb=10;
@@ -109,9 +109,8 @@ for pav=0.2:0.01:0.3
  VEC(2,jjj,iii)=BMEP;%3600000/Li/Rend_e;
  VEC(3,jjj,iii)=Pow;
  VEC(4,jjj,iii)=Par;
- VEC(5,jjj,iii)=Pdet; 
- VEC(6,jjj,iii)=Rend_vol;
-
+ VEC(5,jjj,iii)=Rend_vol;
+ PelDet(jjj,iii)=Pdet;
   end
 end
 
