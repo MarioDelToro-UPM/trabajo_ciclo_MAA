@@ -2,18 +2,14 @@
 clear
 
 
-s1=60;
-b1=103;
+s1=62;
+b1=101;
 lambda=0.3;
-rg=7.5;
-rca=30;
-aae=40;
-aicb=10;
+rg=9.5;
 dcb=40;
-rpm=1000;
-pa1=1;
+rpm=9000;
+TURBO = 1;
 Ta=300;
-pe1=1;
 fequ=1.2; %dosado equivalente, combustible quemado
 Tw=500;
 a=5.4;
@@ -23,6 +19,19 @@ gamma1=1.3;
 gamma2=1.3;
 miter=3;
 ncil=6;% 
+
+rca =Ret_adm(rpm);
+aae =Avn_esc(rpm); 
+aicb=Initcomb(rpm);
+
+if TURBO == 1
+    pa1=1.9;
+    pe1=0.8*pa1;
+
+else
+    pa1=1;
+    pe1=1;
+end
 
 r21=s1/2;
 vd=pi*b1^2/4*s1/1000;

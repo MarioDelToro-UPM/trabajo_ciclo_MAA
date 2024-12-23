@@ -55,7 +55,7 @@ for aicb=-20:2:50
    
  iii=0;
  jjj=jjj+1;  
- for rpm=1000:500:9000
+ for rpm=1000:50:9000
 
     rca=Ret_adm(rpm);
     aae=Avn_esc(rpm);

@@ -2,7 +2,7 @@ clear
 
 s1=62;
 b1=101;
-lambda=0.3;
+lambda=0.25;
 rg=9.5;
 aicb=10;
 dcb1=40;
@@ -20,7 +20,7 @@ miter=3;
 ncil=6;
 
 if TURBO == 1
-    pa1=1.9;
+    pa1=2;
     pe1=0.8*pa1;
 else 
     pa1=1;
