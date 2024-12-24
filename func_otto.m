@@ -345,7 +345,7 @@ Pow=BMEP*pm.ncil*vd/10*rpm/120/1000; %Potencia al freno en kW
 Pdet=0;
 gamma=1.3;
 ide=180+rca;
-tret1=0.01806*(pm.NO/100)^3.4017*APTV(ide+1,2)^-1.7*exp(3800/APTV(ide+1,3));
+tret1=0.01806*(NO/100)^3.4017*APTV(ide+1,2)^-1.7*exp(3800/APTV(ide+1,3));
 
 for ide=180+rca+1:360-aicb
   p=APTV(ide+1,2);
@@ -366,4 +366,3 @@ end
 Pdet = Pdet/wrpm;
 
 end
-
