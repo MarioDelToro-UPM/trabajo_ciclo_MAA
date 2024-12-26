@@ -111,7 +111,7 @@ for pav=0.2:0.01:0.3
  VEC(4,jjj,iii)=Par;
  VEC(5,jjj,iii)=Rend_vol;
  PelDet(jjj,iii)=Pdet;
- EXTRADATA(jjj)=aval;
+ EXTRADATA(jjj)=pav;
   end
 end
 

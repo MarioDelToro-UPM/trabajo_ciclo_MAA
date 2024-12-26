@@ -19,13 +19,7 @@ gamma2=1.3;
 miter=3;
 ncil=6;
 
-if TURBO == 1
-    pa1=2.1;
-    pe1=0.8*pa1;
-else 
-    pa1=1;
-    pe1=1;
-end
+
 
 %r21=s1/2;
 %vd=3.1415927*b1^2/4*s1/1000;
@@ -48,14 +42,31 @@ ORIG=0;
 
 %% Llamada al programa
 
-jjj=0;
- 
-for aicb=-20:2:50
+kkk=0;
 
+for pa1=0.4:0.1:2.1
+
+    kkk=kkk+1;
+
+    if TURBO == 1
+        if 0.8*pa1<1
+            pe1=1;
+        else
+            pe1=0.8*pa1;
+        end
+    else 
+        pa1=1;
+        pe1=1;
+    end
+
+    jjj=0;
+
+ 
+for aicb=-20:2:40
    
  iii=0;
  jjj=jjj+1;  
- for rpm=1000:50:9000
+ for rpm=1000:250:9000
 
     rca=Ret_adm(rpm);
     aae=Avn_esc(rpm);
@@ -112,10 +123,11 @@ for aicb=-20:2:50
  VEC(3,jjj,iii)=Pow;
  VEC(4,jjj,iii)=Par;
  VEC(5,jjj,iii)=Rend_vol;
- PelDet(jjj,iii)=Pdet;
- EXTRADATA(jjj)=aicb;
+ PelDet(jjj,iii,kkk)=Pdet;
 
   end
+end
+
 end
 
 %plot_VEC
