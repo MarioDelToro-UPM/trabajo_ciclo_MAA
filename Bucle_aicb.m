@@ -113,6 +113,7 @@ for aicb=-20:2:50
  VEC(4,jjj,iii)=Par;
  VEC(5,jjj,iii)=Rend_vol;
  PelDet(jjj,iii)=Pdet;
+ EXTRADATA(jjj)=aicb;
 
   end
 end

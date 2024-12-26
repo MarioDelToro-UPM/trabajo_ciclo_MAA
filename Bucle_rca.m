@@ -112,6 +112,7 @@ for rca=0:5:60
  VEC(4,jjj,iii)=Par;
  VEC(5,jjj,iii)=Rend_vol;
  PelDet(jjj,iii)=Pdet;
+ EXTRADATA(jjj)=rca;
 
   end
 end

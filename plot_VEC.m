@@ -25,7 +25,7 @@ figure()
 hold on
 
 for pvj=1:NumAux
- pBMEP(pvj)=plot(VRpm,VecBMEP(pvj,:), DisplayName=num2str(pvj));
+ pBMEP(pvj)=plot(VRpm,VecBMEP(pvj,:), DisplayName=num2str(EXTRADATA(pvj)));
 end
 
 grid on
@@ -43,7 +43,7 @@ figure()
 hold on
 
 for pvj=1:NumAux
- pBPow(pvj)=plot(VRpm,VecBPow(pvj,:), DisplayName=num2str(pvj));
+ pBPow(pvj)=plot(VRpm,VecBPow(pvj,:), DisplayName=num2str(EXTRADATA(pvj)));
 end
 
 
