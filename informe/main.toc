@@ -1,16 +1,12 @@
 \babel@toc {spanish}{}\relax 
 \contentsline {section}{\'{I}ndice de figuras}{\es@scroman {i}}{section*.2}%
 \contentsline {section}{Índice de tablas}{\es@scroman {ii}}{section*.3}%
-\contentsline {section}{Acrónimos}{\es@scroman {iii}}{section*.4}%
-\contentsline {section}{\numberline {1}Sección}{1}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Subseccion}{1}{subsection.1.1}%
-\contentsline {subsubsection}{\numberline {1.1.1}Citar referencias y acrónimos}{1}{subsubsection.1.1.1}%
-\contentsline {subsubsection}{\numberline {1.1.2}Enumeraciones}{1}{subsubsection.1.1.2}%
-\contentsline {subsubsection}{\numberline {1.1.3}Figuras}{1}{subsubsection.1.1.3}%
-\contentsline {subsubsection}{\numberline {1.1.4}Ecuaciones}{3}{subsubsection.1.1.4}%
-\contentsline {subsubsection}{\numberline {1.1.5}Tablas}{3}{subsubsection.1.1.5}%
-\contentsline {subsubsection}{\numberline {1.1.6}Código}{5}{subsubsection.1.1.6}%
-\contentsline {section}{Referencias}{6}{section*.9}%
-\contentsline {section}{Anexos}{6}{section*.9}%
-\contentsline {section}{Anexos}{6}{section*.10}%
-\contentsline {section}{\numberline {A}Título del anexo}{6}{appendix.Alph1}%
+\contentsline {section}{\numberline {1}Potencia y Cilindrada}{1}{section.1}%
+\contentsline {section}{\numberline {2}Carrera y Cilindrada}{2}{section.2}%
+\contentsline {section}{\numberline {3}Retardo al Cierre de Admisión}{3}{section.3}%
+\contentsline {section}{\numberline {4}Adelanto a la apertura de escape}{4}{section.4}%
+\contentsline {section}{\numberline {5}Elección de los Parámetros}{5}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Relación de Compresión Geométrica}{5}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Áreas de válvulas}{5}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Curva de Avance de Encendido}{6}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Optimización del motor}{7}{section.6}%

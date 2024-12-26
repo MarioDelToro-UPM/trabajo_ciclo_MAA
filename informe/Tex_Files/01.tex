@@ -1,133 +1,226 @@
-\section{Sección} \label{s:section_01}
+\section{Potencia y Cilindrada} \label{s:section_01}
 
-En este capítulo se muestran varios ejemplos.
+Para este trabajo se estudiará un motor de competición para un BMW M4 GT3. Se busca que pase de 0 a 100 km/h en tiempos próximos a 2 segundos y alcance velocidades máximas cercanas a 250 km/h. 
 
-\textbf{Negrita} \textit{cursiva}
+Para determinar la potencia que debe producir el motor, se cuentan con los siguientes datos:
 
-Hacer una referencia, en este caso al \autoref{s:section_01}.
-
-% ---   ---   --- %
-
-
-\subsection{Subseccion}
-
-\subsubsection{Citar referencias y acrónimos}
-
-\cite{im78552}, \acrshort{mc}, \acrfull{mc}.
-
-\subsubsection{Enumeraciones}
-
-Enumeración.
-
-\begin{enumerate}
-	\item La impresora debe contar con un sistema de nivelación de la base de impresión.
-	\item El sistema de extrusión de filamento debe asegurar que no se producirán inconsistencias durante los periodos largos de trabajo.
-\end{enumerate}
-
-Enumeración cambiando los items.
-
-\begin{enumerate}[label= \textbf{R-\arabic*}]
-	\item La impresora debe contar con un sistema de nivelación de la base de impresión.
-	\item El sistema de extrusión de filamento debe asegurar que no se producirán inconsistencias durante los periodos largos de trabajo. \label{req:extrusion}
-\end{enumerate}
-
-Referenciar un item: \ref{req:extrusion}, \autoref{req:extrusion}.
-
-
-Ejemplo de bulletpoints.
-
-
-\begin{itemize}[label={\scriptsize\raisebox{0.5ex}{\textbullet}}]
-
-	\item Perfilería de aluminio.
-
+\begin{itemize}
+    \item \textbf{Masa del coche:} Entre 1 y 1.5 toneladas.
+    \item \textbf{Corte de inyección:} 9000 rpm.
+    \item \textbf{Pérdidas en la transmisión:} 15\% de la potencia al freno.
+    \item \textbf{Coeficiente de resistencia aerodinámica (\(C_d\)):} 0.40.
+    \item \textbf{Área frontal:} 3.0 m².
+    \item \textbf{Momento de inercia global:} \( 0.3 \, \text{kg}\text{m}^2 \).
 \end{itemize}
 
+Para garantizar un enfoque conservador, se han seleccionado los datos que conducen a las condiciones más exigentes.
 
+El cálculo de la potencia necesaria para el motor considera las siguientes contribuciones de potencia:
 
-%   ---   ---   %
-
-\subsubsection{Figuras}
-
-Las figuras se pueden fijar en el texto con H, posicionarlas lo mejor posible con h!, arriba con t, etc.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=100mm]{duet3}
-	\caption{Motherboard Duet 3 6HC.}
-	\label{fig:000_00}
-\end{figure}
-
-Subfiguras en paralelo.
-
-\begin{figure}[H]
-	\centering
-	\subfloat[Vista frontal del montaje.\label{fig:mont1}]
-	{
-		\includegraphics[width=50mm,angle=0]{Mont_01}
-	}
-	\hspace*{10mm}
-	\subfloat[Vista trasera del montaje.\label{fig:mont2}]
-	{\includegraphics[width=50mm,angle=0]{Mont_02}
-	}
-	\caption{Montaje del sistema de transmisión del eje X}
-	\label{fig:mont_nema}
-\end{figure}
-
-
-Ejemplo dos figuras en paralelo centradas verticalemtne.
-
-\begin{figure}[H]
-	\begin{minipage}{\textwidth}
-		\centering
-		\raisebox{-0.5\height}{\includegraphics[width=0.4\textwidth]{Perfil_Aluminio}}
-	\hspace*{.2in}
-		\raisebox{-0.5\height}{\includegraphics[width=0.25\textwidth]{Perfil_Aluminio_Union}
-		}
-	\end{minipage}
-	\caption{Ejemplos de perfilería de aluminio.}
-	\label{fig:perfileria_alumnio}
-\end{figure}
-
-Barrera que no pueden atravesar las figuras.
-\FloatBarrier
-
-
-%   ---   ---   %
-
-\subsubsection{Ecuaciones}
-
-Ejemplo de ecuación, \autoref{eq:velocidad}
-
-\begin{equation}\label{eq:velocidad}
-	l = \frac{\pi\cdot1.8}{180\cdot P}\cdot r = \frac{\pi\cdot1.8}{180\cdot16}\cdot 6 = 0.0117 \qquad [\mathrm{mm}].
+\begin{equation}
+\dot{W}_{\text{motor}} = \dot{W}_{\text{aero}} + \dot{W}_{\Delta Ep} + \frac{d}{dt} \left[ \frac{1}{2} m v^2 \right] + \frac{1}{2} \sum_{i} I_i \omega_i^2
 \end{equation}
 
+\subsection*{Cálculo de términos}
+
+El primer término representa la potencia disipada por la resistencia aerodinámica al ir a 100 km/h:
+\[
+\dot{W}_{\text{aero}} =  \frac{1}{2}  \rho_a  C_d  A_fv^3 = 16 \, \text{kW}
+\]
+
+El segundo término representa la potencia asociada al cambio de energía potencial asumiendo una inclinación del 17\% (Eau Rouge-Radillon en Spa-Francorchamps) : 
+\[
+\dot{W}_{\Delta Ep} = \frac{\Delta Ep}{\Delta t} = 125 \, \text{kW}
+\]
+
+El tercer término representa la potencia asociada a acelerar el vehículo (de 0 a 100 km/h en 2 segundos): % de 0 a 100 en 2 segundos
+\[
+\frac{d}{dt} \left[ \frac{1}{2} m v^2 \right] =\frac{1}{2}  m  \frac{v_f^2 - v_i^2}{t} = 289 \, \text{kW}
+\]
+El cuarto término representa la potencia asociada a acelerar las partes móviles del vehículo (de 0 a 100 km/h en 2 segundos):
+\[
+\frac{1}{2} \sum_{i} I_i \omega_i^2 = \frac{1}{2} \  I_g \  \frac{\omega_f^2 - \omega_i^2}{t} = 67 \, \text{kW}
+\]
+
+Por tanto, la potencia total del motor será: \\
+\[
+\dot{W}_{\text{motor}} = 497 \, \text{kW}
+\]
+
+\section{Carrera y Cilindrada} \label{s:section_02}
+
+El motor seleccionado tiene una cilindrada de 3 litros y cuenta con 6 cilindros en línea, con la idea de que sea lo más similar posible a uno de los motores habitualmente instalado por BMW en sus M3 (antecesores al M4).
+
+En la figura \ref{fig:RPM_sb}, se observa la relación entre las revoluciones por minuto (\textit{rpm}) y la potencia del motor. Se ha elegido la curva más lineal (aquella que corresponde a un motor más \textit{elástico}), correspondiente a la carrera de 62 \text{mm}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Figures/01/Potencia_rpm_sb.jpg}
+    \caption{Potencia en función de las rpm para cada carrera.}
+    \label{fig:RPM_sb}
+\end{figure}
+
+La curva de potencia elegida para el estudio se corresponde con una carrera \( s = 62 \, \text{mm} \) y con un radio del émbolo \( b = 101 \, \text{mm} \).
+
+\section{Retardo al Cierre de Admisión} \label{s:section_03}
+Para determinar el retardo del cierre de la válvula de admisión se ha ejecutado un bucle que proporciona las curvas de potencia al freno del motor para distintos valores de dicho ángulo. Una vez obtenida esa gráfica (figura \ref{fig:RPM_rca}) se escoge, para cada intervalo de revoluciones, el valor que mayor potencia proporciona. Esos valores se recogen en la tabla \ref{tab:rpm_RCA}, y a partir de ellos se genera un polinomio de orden 3 (implementado a posteriori en una función) de manera que, para un valor arbitrario de revoluciones del motor, se recibe (redondeado al entero más próximo) el valor óptimo de este parámetro. Los resultados de este polinomio y los datos contenidos en la tabla se observan en la figura \ref{fig:RPM_rca_regresión}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Figures/01/Potencia_rpm_rca.jpg}
+    \caption{Potencia en función de las rpm para cada retardo al cierre de admisión.}
+    \label{fig:RPM_rca}
+\end{figure}
+
+\begin{table}[htbp]
+    \centering
+    \resizebox{1\textwidth}{!}{
+        \begin{tabular}{|c|*{8}{c|}}
+           \hline 
+           \textbf{rpm} & 0-2000 & 2000-3500 & 3500-4800 & 4800-6000 & 6000-6900 & 6900-7750 & 7750-8500 & 8500-9000 \\
+           \hline 
+           RCA [°] & 5 & 10 & 15 & 20 & 30 & 35 & 40 & 45 \\
+           \hline
+        \end{tabular}
+    }
+    \caption{Retardos de cierre de admisión que obtienen mayor potencia en función de las rpm.}
+    \label{tab:rpm_RCA}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Figures/01/regresion_rca.jpg}
+    \caption{Polinomio del retardo al cierre de admisión en función de las rpm.}
+    \label{fig:RPM_rca_regresión}
+\end{figure}
 
 
-% ---   ---   --- %
-
-\subsubsection{Tablas}
-
-Ejemplo de tabla de grandes dimensiones e introducir una página apaisada. También se muestra como poner en negrita letras griegas, que a veces dan problemas.
-
-\begin{landscape}
-    \vspace*{\fill}
-    \input{Tables/table_example}
-    \vspace*{\fill}
-    \clearpage
-\end{landscape}
 
 
-% ---   ---   --- %
-
-\subsubsection{Código}
 
 
-\begin{lstlisting}
-M303 H0 S60 ; auto tune heater 0, default PWM (100%), 60C target
-M303        ; report the auto-tune status or last resulM303 ; report the auto-tune status or last result
-M500        ; save parameters
-\end{lstlisting}
 
-\lstinputlisting{Code/function.m}
+\section{Adelanto a la apertura de escape} \label{s:section_04}
+
+Se procede de forma análoga al apartado anterior y se recoge la potencia al freno del motor para distintos valores de dicho ángulo \ref{fig:RPM_aae}. A través de esta gráfica se obtiene la tabla \ref{tab:rpm_AAE}. Los resultados de realizar una regresión igual a la utilizada con el RCA y los datos contenidos en la tabla se observan en la figura \ref{fig:RPM_aae_regresión}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Figures/01/Potencia_rpm_aae.jpg}
+    \caption{Potencia en función de las rpm para cada adelanto a la apertura de escape.}
+    \label{fig:RPM_aae}
+\end{figure}
+
+\begin{table}[htbp]
+    \centering
+    \resizebox{1\textwidth}{!}{
+        \begin{tabular}{|c|*{9}{c|}}
+           \hline 
+           \textbf{rpm} & 0-1750 & 1750-2500 & 2500-3250 & 3250-4000 & 4000-5000 & 5000-6000 & 6000-7000 & 7000-8500 & 8500-9000 \\
+           \hline 
+           RCA [°] & 30 & 35 & 40 & 45 & 50 & 55 & 60 & 60 & 65 \\
+           \hline
+        \end{tabular}
+    }
+    \caption{Adelantos de apertura de escape que obtienen mayor potencia en función de las rpm.}
+    \label{tab:rpm_AAE}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Figures/01/regresion_aae.jpg}
+    \caption{Polinomio del adelanto de apertura de escape en función de las rpm.}
+    \label{fig:RPM_aae_regresión}
+\end{figure}
+
+
+
+\section{Elección de los Parámetros} \label{s:section_05}
+\subsection{Relación de Compresión Geométrica} \label{s:subsection_01}
+Inicialmente se empleó una relación de compresión de 7.5, al ver que este se podía subir sin generar problemas de detonación que no se pudiesen solucionar modificando los ángulos de ignición, se decidió subir a 9.5. A su vez, al haber elegido un vehículo deportivo turboalimentado, en la modelización de este se considera una presión de admisión algo mayor que la correspondiente con la ambiente al nivel del mar; es decir, alrededor de 2 bares; mientras que la presión de escape será el 80\% de esta última.
+
+\subsection{Áreas de válvulas} \label{s:subsection_02}
+\begin{itemize}
+   \item \textbf{Área de válvula de admisión (AA):} 33\%  del área del cilindro.
+  \item \textbf{Área de válvula de escape (AE):} 28\%  del área del cilindro.
+  \end{itemize}
+
+A partir de esta configuración inicial, se evalúa el impacto de variaciones, en este caso, aumento; en el tamaño del área efectiva de las válvulas sobre el rendimiento del motor.
+
+\begin{figure}[H]
+    \centering
+    % Subfigura 1
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/01/Potencia_rpm_aval_admision.jpg}
+        \caption{Potencia en función de las rpm para dicha área de válvula de admisión (AA).}
+        \label{fig:RPM_aval_admision}
+    \end{subfigure}
+    \hfill
+    % Subfigura 2
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/01/Potencia_rpm_aval_escape.jpg}
+        \caption{Potencia en función de las rpm para dicha área de válvula de escape (AE).}
+        \label{fig:RPM_aval_escape}
+    \end{subfigure}
+    
+    % Título principal
+    \caption{Potencia en función de las rpm para áreas de válvula de admisión (AA) y de escape (AE).}
+    \label{fig:RPM_aval_combined}
+\end{figure}
+
+Como era de esperar, se comprueba que un aumento en el tamaño de las válvulas implica un aumento en el flujo de aire que entra al motor y, por tanto, en la potencia producida por el mismo. Sin embargo, existe una limitación geométrica y de propiedades del material a la hora de ir aumentando el tamaño de los agujeros practicados a la culata para alojar dichas válvulas. Por tanto, se tomaron los siguientes valores:
+
+\begin{itemize}
+   \item \textbf{Área de válvula de admisión (AA):} 40\%  del área del cilindro.
+  \item \textbf{Área de válvula de escape (AE):} 30\%  del área del cilindro.
+  \end{itemize}
+  
+
+\subsection{Curva de Avance de Encendido} \label{s:subsection_03}
+
+Para determinar la curva de avance de encendido a plena carga del motor se ejecutó un bucle de código que recorre los puntos de funcionamiento a plena carga (presión de soplado del turbo 2.1 bar), con un paso de $50 \ rpm$, y un barrido desde $-20º$ a $40º$ de adelanto de encendido frente al punto muerto superior del tiempo de compresión (siendo valores negativos de AICB retardos), mientras que se guarda en un vector el peligro de detonación para cada una de las combinaciones. Se escoge, entonces, para cada valor de $rpm$, el valor de AICB que más próximo se quede, por debajo, a un peligro de detonación de $1.05$. Mediante esos datos se genera un polinomio de grado 6 que aproxime a la función discreta. Dicho polinomio es la curva analítica que se utiliza para calcular el avance de encendido óptimo a cada régimen de revoluciones.
+
+En la siguiente tabla \ref{tab:rpm_AICB} se presentan algunos de los adelantos de inicio de combustión que evitan la detonación.
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        \textbf{rpm}       & 1000 & 1500 & 2000 & 2500 & 3000 & 3500 & 4000 & 4500 & 5000 \\ 
+        \hline
+        \textbf{AICB [º]} & -16  & -8   & -2   & 2    & 4    & 6    & 8    & 10   & 10   \\ 
+        \hline
+        \textbf{rpm}       & 5500 & 6000 & 6500 & 7000 & 7500 & 8000 & 8500 & 9000 & \\ 
+        \hline
+        \textbf{AICB [º]} & 12   & 14   & 14   & 14   & 16   & 16   & 18   & 18    & \\ 
+        \hline
+    \end{tabular}
+    \caption{Adelantos de inicio de combustión que evitan la detonación en función de las rpm.}
+    \label{tab:rpm_AICB}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Figures/01/regresion_aicb.jpg}
+    \caption{Adelantos de inicio de conbustión que evitan la detonación en función de las rpm.}
+    \label{fig:RPM_aicb}
+\end{figure}
+
+\section{Actuaciones del motor} \label{s:section_06}
+Con las siguientes tablas y gráficas y mediante una regresión de la que se obtiene un polinomio de tercer grado se obtiene la curva de los retardos al cierre de admisión y adelantos a la apertura de escape que maximizan la potencia en función de las revoluciones por minuto (\textit{rpm}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Figures/01/Potencia_rpm.jpg}
+    \caption{Potencia al freno en función de las rpm.}
+    \label{fig:RPM_pot}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Figures/01/BMEP.jpg}
+    \caption{Presión media efectiva al freno en función de las rpm.}
+    \label{fig:RPM_bmep}
+\end{figure}
+

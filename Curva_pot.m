@@ -109,6 +109,7 @@ VEC(2,1,iii)=BMEP;%3600000/Li/Rend_e;
 VEC(3,1,iii)=Pow;
 VEC(4,1,iii)=Par;
 VEC(5,1,iii)=Rend_vol;
+VEC(6,1,iii)=BSFC;
 PelDet(iii)=Pdet;
 
 end

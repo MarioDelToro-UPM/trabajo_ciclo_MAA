@@ -7,6 +7,8 @@ VRpm=zeros(NumRpm,1);
 P1=zeros(NumRpm,1);
 pBMEP=zeros(NumAux);
 pBPow=zeros(NumAux);
+pBTrq=zeros(NumAux);
+pBBSFC=zeros(NumAux);
 
 for pvi=1:NumRpm
     VRpm(pvi)=VEC(1,1,pvi);
@@ -16,6 +18,8 @@ for pvj=1:NumAux
  for pvi=1:NumRpm
     VecBMEP(pvj,pvi)=VEC(2,pvj,pvi); %El 2 indica que es la BMEP
     VecBPow(pvj,pvi)=VEC(3,pvj,pvi); %El 3 indica que es la Potencia
+    VecBTrq(pvj,pvi)=VEC(4,pvj,pvi);
+    VecBBSFC(pvj,pvi)=VEC(6,pvj,pvi);
  end
 end
 
@@ -25,7 +29,7 @@ figure()
 hold on
 
 for pvj=1:NumAux
- pBMEP(pvj)=plot(VRpm,VecBMEP(pvj,:), DisplayName=num2str(EXTRADATA(pvj)));
+ pBMEP(pvj)=plot(VRpm,VecBMEP(pvj,:));%, DisplayName=num2str(EXTRADATA(pvj)));
 end
 
 grid on
@@ -43,7 +47,8 @@ figure()
 hold on
 
 for pvj=1:NumAux
- pBPow(pvj)=plot(VRpm,VecBPow(pvj,:), DisplayName=num2str(EXTRADATA(pvj)));
+ pBPow(pvj)=plot(VRpm,VecBPow(pvj,:));%, DisplayName=num2str(EXTRADATA(pvj)));
+ pBTrq(pvj)=plot(VRpm,VecBTrq(pvj,:));
 end
 
 

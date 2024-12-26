@@ -5,21 +5,23 @@
 
 %   ---   DEFINICION DEL TRABAJO   ---   %
 
-\newcommand{\Project}{Motores Alternativos}
+\newcommand{\Project}{Motores Alternativos Aeronaúticos}
 \newcommand{\ProjectTitle}{Trabajo Ciclo Termodinámico}
 \newcommand{\ProjectSubject}{Grado de Ingeniería Aeroespacial}
 \newcommand{\ProjectAutor}{ Cambra Valcárcel, Pablo \\
-             & Del Toro Armas, Mario \\ & Gómez Jiménez, Paula\\ & Pérez Trias Daniel\\ & Serrano Vega, Carmen}
-%\newcommand{\ProjectTutor}{ Tutor 1 \\
-%                            & Tutor 2}
+             & Del Toro Armas, Mario \\ & Gómez Jiménez, Paula\\ & Pérez Trias, Daniel\\ & Serrano Vega, Carmen}
 \newcommand{\ProjectLocation}{Madrid}
-\newcommand{\ProjectDate}{28 de diciembre de 2024}
+\newcommand{\ProjectDate}{Diciembre 2024}
 % Descomentar si se tiene un repositorio del trabajo
 % \newcommand{\ProjectGitHub}{url}
 
 
 
 %   ---   INCLUIR ARCHIVOS DE CONFIGURACION   ---   %
+\usepackage{chngcntr}
+\counterwithin{table}{section}
+\counterwithin{figure}{section} 
+
 
 \input{./Tex_Files/packages.tex}
 \input{./Tex_Files/acronyms.tex}
@@ -61,11 +63,6 @@
 \listoftables
 \clearpage
 
-% Acronyms  
-\renewcommand{\acronymname}{Acrónimos}
-\addcontentsline{toc}{section}{\acronymname}
-\printglossary[type=\acronymtype]   % \printglossary[type=\acronymtype,style=long]
-\clearpage
 
 % Numeracion en arabico
 \setcounter{page}{0}
@@ -89,21 +86,6 @@
 \bibliography{references.bib}
 \clearpage
 
-
-
-%   ---   ANEXOS   ---   %
-
-\appendix
-\renewcommand{\appendixname}{Anexos}
-\addcontentsline{toc}{section}{\appendixname}
-\clearpage % or \cleardoublepage
-\appendixpage
-\addappheadtotoc
-\renewcommand{\appendixname}{Anexo}
-
-
-\input{./Tex_Files/A_01.tex}
-\clearpage
 
 
 \end{document}
