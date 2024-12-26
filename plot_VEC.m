@@ -35,7 +35,7 @@ end
 grid on
 box on
 
-title('BMEP vs. rpm','fontsize',14)
+%title('BMEP vs. rpm','fontsize',14)
 
 xlabel('rpm','fontsize',14)
 ylabel('BMEP(bar)','fontsize',14)
@@ -47,8 +47,8 @@ figure()
 hold on
 
 for pvj=1:NumAux
- pBPow(pvj)=plot(VRpm,VecBPow(pvj,:));%, DisplayName=num2str(EXTRADATA(pvj)));
- pBTrq(pvj)=plot(VRpm,VecBTrq(pvj,:));
+ pBPow(pvj)=plot(VRpm,VecBPow(pvj,:), DisplayName='Potencia al freno');
+ pBTrq(pvj)=plot(VRpm,VecBTrq(pvj,:), DisplayName='Par al freno');
 end
 
 
@@ -56,11 +56,37 @@ end
 grid on
 box on
 
-title('Potencia vs. rpm','fontsize',14)
+%title('Potencia vs. rpm','fontsize',14)
 
 xlabel('rpm','fontsize',14)
-ylabel('Potencia al freno (kW)','fontsize',14)
+ylabel('[kW], [Nm]','fontsize',14)
 legend('show')
+
+filename = 'Potencia_rpm.jpg';
+print(gcf, filename, '-djpeg', '-r300');
+
+
+figure()
+
+hold on
+
+for pvj=1:NumAux
+ pBBSFC(pvj)=plot(VRpm,VecBBSFC(pvj,:));%, DisplayName='Potencia al freno');
+end
+
+
+%axis([0 720 0 90])
+grid on
+box on
+
+%title('BSFC','fontsize',14)
+
+xlabel('rpm','fontsize',14)
+ylabel('[g/kWh]','fontsize',14)
+
+filename = 'BSFC_rpm.jpg';
+print(gcf, filename, '-djpeg', '-r300');
+
 
 %set(gca,'fontsize',14)
 %set(gca,'xtick',[0 90 180 270 360 450 540 630 720])
