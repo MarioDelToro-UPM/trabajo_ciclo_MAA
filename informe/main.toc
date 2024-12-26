@@ -9,4 +9,5 @@
 \contentsline {subsection}{\numberline {5.1}Relación de Compresión Geométrica}{5}{subsection.5.1}%
 \contentsline {subsection}{\numberline {5.2}Áreas de válvulas}{5}{subsection.5.2}%
 \contentsline {subsection}{\numberline {5.3}Curva de Avance de Encendido}{6}{subsection.5.3}%
-\contentsline {section}{\numberline {6}Optimización del motor}{7}{section.6}%
+\contentsline {section}{\numberline {6}Actuaciones del motor}{7}{section.6}%
+\contentsline {section}{\numberline {7}Mapa de encendido}{8}{section.7}%
