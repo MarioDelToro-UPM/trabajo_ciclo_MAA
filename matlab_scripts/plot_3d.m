@@ -9,7 +9,7 @@ end
 figure
 surf(Y,Z,x)
 axis([0.4 2.1 1000 9000 -20 50])
-xlabel('Presión de admisión [Pa]')
+xlabel('Presión de admisión [bar]')
 ylabel('[rpm]')
 zlabel('AICB [º]')
 filename='ignitionmap.jpg';
