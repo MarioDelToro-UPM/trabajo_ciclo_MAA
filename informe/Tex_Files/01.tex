@@ -246,7 +246,61 @@ Se ha desarrollado, de igual manera que se explicó en la sección \ref{s:subsec
 
 \section{Optimización por métodos numéricos} \label{s:section_08}
 
-PLACEHOLDER
+Por último se ha hecho uso de algoritmos de optimización para comparar los valores de los ángulos de adelanto de combustión, retardo al cierre de admisión y %
+adelanto a la apertura de escape obtenidos de forma cualitativa para maximizar la potencia con los obtenidos al resolver el problema de optimización. %
+Por el funcionamiento interno del código los valores del RCA, AAE y AICB son tratados como números enteros, por esta razón un método gradiente no resultaría %
+práctico y se ha hecho uso de algoritmos genéticos. La optimización se ha realizado tomando como variables de diseño los tres ángulos mencionados y como función objetivo %
+la potencia del ciclo sin alterar el resto de parámetros y con la restriccion de que no se llegue a detonación.
+Los resultados obtenidos mediante la función \textit{ga} del \textit{Optimization Toolbox} de MATLAB se muestran a continuación:
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/01/opti_RCA.jpg}
+        \caption{Retardo del cierre admisión.}
+        \label{fig:opti_RCA}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/01/opti_AAE.jpg}
+        \caption{Adelanato a la apertura de escape.}
+        \label{fig:opti_AAE}
+    \end{subfigure}
+    \\
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/01/opti_AICB.jpg}
+        \caption{Adelanto al inicio de combustión.}
+        \label{fig:opti_AICB}
+    \end{subfigure}
+    \caption{Ángulos óptimos obtenidos de forma cualitativa y mediante el algoritmo genético en función de las rpm.}
+    \label{fig:opti_angles}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Figures/01/opti_pot.jpg}
+    \caption{Potencia al freno del motor usado y el optimizado frente a rpm.}
+    \label{fig:opti_pot}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Figures/01/opti_pdet.jpg}
+    \caption{Peligro de detonación del motor usado y el optimizado frente a rpm.}
+    \label{fig:mapa_completo}
+\end{figure}
+
+A la vista de las figuras \ref{fig:opti_angles} se comprueba que las tendencias obtenidas de forma cualitativa coinciden con las obtenidas con la optimización. A bajas rpm se observa %
+cierta falta de consistencia en los valores óptimos del RCA, figura \ref{fig:opti_rca}, esto se puede deber a la inestabilidad propia de los métodos genéticos. La mayor diferencia se %
+observa el AICB que es entre $5-10^\circ$ inferior al usado, figura \ref{fig:opti_aicb}. Sin  embargo, se observa que se ha obtenido un incremento de potencia marginal frente al obtenido mediante el análisis cualitativo, figura \ref{fig:opti_pot} %
+mostrando la fidelidad de este método que tan solo requiere del ánalisis de gráficas y datos obtenidos directamente frente a las varias horas de cálculo que requiere el algoritmo de optimización %
+para obtener resultados que como se puede ver no son totalmente precisos. La otra diferencia más destacable es que mientras en el motor usado siempre se está operando en condiciones próximas a la %
+detonación en el obtenido por optimización solo se llega a esta situación a altas rpm, figura \ref{fig:opti_pdet}.
+
 
 \section{Conclusiones} \label{s:section_09}
 
