@@ -3,36 +3,38 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% RESOLUCIÓN DEL SISTEMA DE ECUACIONES
+theta3_rad = theta3;
 
 one=-r3.*(1-delta)*(-sin(theta3_rad));
 two=-r3.*(1-delta)*cos(theta3_rad);
 three=r3*delta*(-sin(theta3_rad));
 four=r3*delta*cos(theta3_rad);
  
-Rax=zeros(1,721);
-Ray=zeros(1,721);
-Rbx=zeros(1,721);
-Rby=zeros(1,721);
-Fr=zeros(1,721);
+Rax=zeros(721,1);
+Ray=zeros(721,1);
+Rbx=zeros(721,1);
+Rby=zeros(721,1);
+Fr=zeros(721,1);
  
-for i=1:721
-    
-Carga=[1 0 0 0 0;0 1 0 0 1; -1 0 -1 0 0;0 -1 0 -1 0; one(1,i) two(1,i) three(1,i) four(1,i) 0];
 
-p1=(m1*r1_punto_punto(1,i)-transpose(F1(i,1)));
-p3=m3*r3x_cdg_punto_punto(1,i);
-p4=m3*r3y_cdg_punto_punto(1,i);
-p5=I_pe(1,1)*alpha3(1,i);
+for i=1:721
+   
+    Carga=[1 0 0 0 0;0 1 0 0 1; -1 0 -1 0 0;0 -1 0 -1 0; one(i,1) two(i,1) three(i,1) four(i,1) 0];
+
+p1=(m1*r1_punto_punto(i,1)-F1(i,1)); % 
+p3=m3*r3x_cdg_punto_punto(i,1);
+p4=m3*r3y_cdg_punto_punto(i,1);
+p5=I_pe*alpha3(i,1);
 
 Indep=[p1; 0 ; p3; p4; p5];
 
 x=Carga\Indep;
  
- Rax(1,i)=x(1,1);
- Ray(1,i)=x(2,1);
- Rbx(1,i)=x(3,1);
- Rby(1,i)=x(4,1);
- Fr(1,i)=x(5,1);
+ Rax(i,1)=x(1,1);
+ Ray(i,1)=x(2,1);
+ Rbx(i,1)=x(3,1);
+ Rby(i,1)=x(4,1);
+ Fr(i,1)=x(5,1);
 
 end
 

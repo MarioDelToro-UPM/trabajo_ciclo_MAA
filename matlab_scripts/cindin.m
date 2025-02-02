@@ -1,12 +1,18 @@
-%clear
+clear
+caso_1 = 'a'; % a - Biela original // b - Biela 10% mas larga
+caso_2 = 'a'; % a - adm 0.3 bar y 1200 rpm // b - adm 1 bar y 3000 rpm // c adm 1 bar y  9000 rpm(max)
 
 % Variables para cinemática
-s1=80;
-vd=400;
-lambda=0.25;
-
+s1=62;
+b1=101;
+vd=pi*b1^2/4*s1/1000;
+if 'a' == caso_1
+    lambda=0.3;
+elseif 'b' == caso_1
+    lambda = 0.27;
+end
 s=s1/1000;
-b=(4*vd/s/100/pi)^(1/2)/100;
+b=b1/1000;
 r2=s/2;
 r3=r2/lambda;
 e=0.0;
@@ -14,31 +20,42 @@ e=0.0;
 %Variables para princotto
 QANG=0;
 ORIG=0;
-rg=11;
-rca=40;
-aae=40;
-aicb=20;
-dcb=50;
-rpm=1200;
-pe1=1;
-Ta=290;
-pa1=0.4;
-fequ=1.00;
-Tw=450;
-a=5;
+rg=9.5;
+dcb=40;
+Ta=300;
+fequ=1.2;
+Tw=500;
+a=5.4;
 n=3;
+NO=100;
 gamma1=1.3;
 gamma2=1.3;
 miter=3;
+if 'a' == caso_2
+    pa1 = 0.3;
+    rpm = 1200;
+elseif 'b' == caso_2
+    pa1 = 1;
+    rpm = 3000;
+elseif 'c' == caso_2
+    pa1 = 1;
+    rpm = 9000;
+end
+pe1 = pa1;
+rca=Ret_adm(rpm);
+aae=Avn_esc(rpm); 
+aicb=Initcomb(rpm);
 
 pa=pa1*100000;
 pe=pe1*100000;
 qr=vd/1000000;
 
+Avalv_a=0.4*pi*b^2/4;
+Avalv_e=0.3*pi*b^2/4;
 
 %Masas y biela
-m1=0.4;
-m3=0.55;
+m1=0.6;
+m3=0.45;
 I3=0.0012;
 delta=0.25;
 
