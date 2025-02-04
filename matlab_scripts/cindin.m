@@ -1,6 +1,6 @@
-%clear
-caso_1 = 'a'; % a - Biela original // b - Biela 10% mas larga
-caso_2 = 'a'; % a - adm 0.3 bar y 1200 rpm // b - adm 1 bar y 3000 rpm // c adm 1 bar y  9000 rpm(max)
+clear
+caso_1 = 'b'; % a - Biela original // b - Biela 10% mas larga
+caso_2 = 'b'; % a - adm 0.3 bar y 1200 rpm // b - adm 1 bar y 3000 rpm // c adm 1 bar y  9000 rpm(max)
 
 % Variables para cinemática
 s1=62;
@@ -94,25 +94,18 @@ T2_tot(1:120)=T2(1:120)+T2(121:240)+T2(241:360)+T2(361:480)+T2(481:600)+T2(601:7
 T2_tot(121:720)= [T2_tot(1:120) T2_tot(1:120) T2_tot(1:120) T2_tot(1:120) T2_tot(1:120)];
 T2_tot(721)=T2_tot(1);
 
-%Cálculo de fuerzas
-% Metodo directo
-Rax_1=m1*a1-F1;
-Rbx_1=-Rax_1-m3*a3gx;
-Rby_1=(-T2+r2*Rbx_1.*sin(theta2rad))./cos(theta2rad)/r2;
-Ray_1=-Rby_1-m3*a3gy;
-Fr_1=-Ray_1;
-
-% Sistema de ecuaciones
+% Cálculo de fuerzas
+% Se plantea el sistema de ecuaciones para evitar indeterminaciones
 one=-r3.*(1-delta)*(-sin(theta3rad));
 two=-r3.*(1-delta)*cos(theta3rad);
 three=r3*delta*(-sin(theta3rad));
 four=r3*delta*cos(theta3rad);
  
-Rax_2=zeros(721,1);
-Ray_2=zeros(721,1);
-Rbx_2=zeros(721,1);
-Rby_2=zeros(721,1);
-Fr_2=zeros(721,1);
+Rax=zeros(721,1);
+Ray=zeros(721,1);
+Rbx=zeros(721,1);
+Rby=zeros(721,1);
+Fr=zeros(721,1);
 
 for i=1:721
     Carga=[1 0 0 0 0;0 1 0 0 1; -1 0 -1 0 0;0 -1 0 -1 0; one(i,1) two(i,1) three(i,1) four(i,1) 0];
@@ -126,17 +119,15 @@ for i=1:721
     
     x=Carga\Indep;
     
-    Rax_2(i,1)=x(1,1);
-    Ray_2(i,1)=x(2,1);
-    Rbx_2(i,1)=x(3,1);
-    Rby_2(i,1)=x(4,1);
-    Fr_2(i,1)=x(5,1);
+    Rax(i,1)=x(1,1);
+    Ray(i,1)=x(2,1);
+    Rbx(i,1)=x(3,1);
+    Rby(i,1)=x(4,1);
+    Fr(i,1)=x(5,1);
 end
-% Reacciones en el apoyo del cigueñal
-Rcx=Rax_1+m3*a3gx;
-Rcy=Ray_1+m3*a3gy;
 
-% Coeficiente de regularidad
+
+%% Coeficiente de regularidad
 I_tot0 = 0.5;
 CR_obj = 2;
 I_tot = fminsearch(@(I_tot) abs(coef_reg(wrpm, T2_tot, I_tot)-CR_obj), I_tot0);
