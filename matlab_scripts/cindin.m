@@ -1,6 +1,6 @@
-clear
+%clear
 caso_1 = 'a'; % a - Biela original // b - Biela 10% mas larga
-caso_2 = 'a'; % a - adm 0.3 bar y 1200 rpm // b - adm 1 bar y 3000 rpm // c adm 1 bar y  9000 rpm(max)
+caso_2 = 'c'; % a - adm 0.3 bar y 1200 rpm // b - adm 1 bar y 3000 rpm // c adm 1 bar y  9000 rpm(max)
 
 % Variables para cinemática
 s1=62;
@@ -63,44 +63,78 @@ delta=0.25;
 princotto
 theta2=APTV(:,1);
 pres=APTV(:,2);
-
 F1=-pi*b^2/4*(pres-1)*100000;
-plot (theta2,F1)
+
 %Cinemática
 wrpm=rpm*pi/30;
 rb=0.25*r3;
 theta2=(0:720)';
 theta2rad=theta2*pi/180;
 
-theta3=asin(e-lambda*sin(theta2rad));
-r1=r3*(lambda*cos(theta2rad)+cos(theta3));
+theta3rad=asin(e-lambda*sin(theta2rad));
+r1=r3*(lambda*cos(theta2rad)+cos(theta3rad));
 
-w3=-wrpm*lambda*cos(theta2rad)./cos(theta3);
-v1=-r3*(lambda*wrpm*sin(theta2rad)+w3.*sin(theta3));
+w3=-wrpm*lambda*cos(theta2rad)./cos(theta3rad);
+v1=-r3*(lambda*wrpm*sin(theta2rad)+w3.*sin(theta3rad));
 
-a3=lambda*wrpm^2*sin(theta2rad)./cos(theta3)-w3.^2.*sin(theta3)./cos(theta3);
-a1=-r2*wrpm^2*cos(theta2rad)-r3*(a3.*sin(theta3)+w3.^2.*cos(theta3));
-
+a3=lambda*wrpm^2*sin(theta2rad)./cos(theta3rad)-w3.^2.*sin(theta3rad)./cos(theta3rad);
+a1=-r2*wrpm^2*cos(theta2rad)-r3*(a3.*sin(theta3rad)+w3.^2.*cos(theta3rad));
 
 %Cálculo de par instantáneo
-v3gx=-r2*wrpm*sin(theta2rad)-rb*w3.*sin(theta3);
-v3gy=r2*wrpm*cos(theta2rad)+rb*w3.*cos(theta3);
-a3gx=-r2*wrpm^2*cos(theta2rad)-rb*(a3.*sin(theta3)+w3.^2.*cos(theta3));
-a3gy=-r2*wrpm^2*sin(theta2rad)+rb*(a3.*cos(theta3)-w3.^2.*sin(theta3));
+v3gx=-r2*wrpm*sin(theta2rad)-rb*w3.*sin(theta3rad);
+v3gy=r2*wrpm*cos(theta2rad)+rb*w3.*cos(theta3rad);
+v3g=sqrt(v3gx.^2+v3gy.^2);
+a3gx=-r2*wrpm^2*cos(theta2rad)-rb*(a3.*sin(theta3rad)+w3.^2.*cos(theta3rad));
+a3gy=-r2*wrpm^2*sin(theta2rad)+rb*(a3.*cos(theta3rad)-w3.^2.*sin(theta3rad));
+a3g=sqrt(a3gx.^2+a3gy.^2);
 
 T2=(-F1.*v1+I3*a3.*w3+m3*a3gx.*v3gx+m3*a3gy.*v3gy+m1*a1.*v1)/wrpm;
-Tm=-T2;
+
+T2_tot(1:120)=T2(1:120)+T2(121:240)+T2(241:360)+T2(361:480)+T2(481:600)+T2(601:720); % 6 cilindros
+T2_tot(121:720)= [T2_tot(1:120) T2_tot(1:120) T2_tot(1:120) T2_tot(1:120) T2_tot(1:120)];
+T2_tot(721)=T2_tot(1);
 
 %Cálculo de fuerzas
-Rax=m1*a1-F1;
-Rbx=-Rax-m3*a3gx;
-Rby=(-T2+r2*Rbx.*sin(theta2rad))./cos(theta2rad)/r2;
-Ray=-Rby-m3*a3gy;
-Fr=-Ray;
+% Metodo directo
+Rax_1=m1*a1-F1;
+Rbx_1=-Rax_1-m3*a3gx;
+Rby_1=(-T2+r2*Rbx_1.*sin(theta2rad))./cos(theta2rad)/r2;
+Ray_1=-Rby_1-m3*a3gy;
+Fr_1=-Ray_1;
 
-%Par total
-Ttot(1:120)=Tm(1:120)+Tm(121:240)+Tm(241:360)+Tm(361:480)+Tm(481:600)+Tm(601:720);
+% Sistema de ecuaciones
+one=-r3.*(1-delta)*(-sin(theta3rad));
+two=-r3.*(1-delta)*cos(theta3rad);
+three=r3*delta*(-sin(theta3rad));
+four=r3*delta*cos(theta3rad);
+ 
+Rax_2=zeros(721,1);
+Ray_2=zeros(721,1);
+Rbx_2=zeros(721,1);
+Rby_2=zeros(721,1);
+Fr_2=zeros(721,1);
 
-figure
-plot(Ttot);
+for i=1:721
+    Carga=[1 0 0 0 0;0 1 0 0 1; -1 0 -1 0 0;0 -1 0 -1 0; one(i,1) two(i,1) three(i,1) four(i,1) 0];
+
+    p1=(m1*a1(i,1)-F1(i,1));
+    p3=m3*a3gx(i,1);
+    p4=m3*a3gy(i,1);
+    p5=I3*a3(i,1);
+    
+    Indep=[p1; 0 ; p3; p4; p5];
+    
+    x=Carga\Indep;
+    
+    Rax_2(i,1)=x(1,1);
+    Ray_2(i,1)=x(2,1);
+    Rbx_2(i,1)=x(3,1);
+    Rby_2(i,1)=x(4,1);
+    Fr_2(i,1)=x(5,1);
+end
+% Reacciones en el apoyo del cigueñal
+Rcx=Rax_1+m3*a3gx;
+Rcy=Ray_1+m3*a3gy;
+
+
 
