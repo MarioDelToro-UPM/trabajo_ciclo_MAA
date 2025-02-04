@@ -1,6 +1,6 @@
 %clear
 caso_1 = 'a'; % a - Biela original // b - Biela 10% mas larga
-caso_2 = 'c'; % a - adm 0.3 bar y 1200 rpm // b - adm 1 bar y 3000 rpm // c adm 1 bar y  9000 rpm(max)
+caso_2 = 'a'; % a - adm 0.3 bar y 1200 rpm // b - adm 1 bar y 3000 rpm // c adm 1 bar y  9000 rpm(max)
 
 % Variables para cinemática
 s1=62;
@@ -136,5 +136,24 @@ end
 Rcx=Rax_1+m3*a3gx;
 Rcy=Ray_1+m3*a3gy;
 
+% Coeficiente de regularidad
+I_tot0 = 0.5;
+CR_obj = 2;
+I_tot = fminsearch(@(I_tot) abs(coef_reg(wrpm, T2_tot, I_tot)-CR_obj), I_tot0);
+disp(['Inercia del conjunto: ', num2str(I_tot), ' kg m^2']);
+w2_real = din_cig(wrpm, T2_tot, I_tot);
 
+function CR = coef_reg(wrpm, T2_tot, I_tot)
+    w2 = din_cig(wrpm, T2_tot, I_tot);
+    CR = (max(w2)-min(w2))/wrpm*100;
+end
 
+function w2 = din_cig(w2_avg, T2_tot, I_tot)
+    % Integracion temporal con un Euler explicito
+    TR = trapz(0:720, T2_tot)/720;
+    w2 = zeros(721,1);
+    w2(1) = w2_avg;
+    for i=1:720
+        w2(i+1) = w2(i) + (pi/180)*(1/w2_avg)*(-T2_tot(i) + TR)/I_tot;
+    end
+end
