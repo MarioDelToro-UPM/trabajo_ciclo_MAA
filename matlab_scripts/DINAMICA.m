@@ -7,16 +7,14 @@ F1=zeros(721,1);
  
  for v=1:721
     
- F1(v,1)=-(APTV(v,2)-0)*100000*pi*b^2/4; %[N]
+    F1(v,1)=-(APTV(v,2)-0)*100000*pi*b^2/4; %[N]
  
  end
  %% SISTEMA DEL PÉNDULO PARA HALLAR LA INERCIA DE LA BIELA
 % m1=229/1000; % Masa del émbolo [kg]
 % m3=294/1000; % Masa del émbolo [kg]
 %I_pe=m3*(0.85*r3*(1-delta)*r3-(1-delta)^2*r3^2); % Sistema del péndulo
-I_pe=0.01;
-m3=0.56;
-m1=0.9;
+I_pe=I3;
 %%  OBTENCIÓN DEL PAR MOTOR Y PAR MOTOR TOTAL
 w2 = wrpm;
 r1_punto = v1;

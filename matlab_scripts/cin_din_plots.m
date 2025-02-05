@@ -25,11 +25,41 @@ print(gcf, 'cin_din_plots/Vel_embolo.jpg', '-djpeg', '-r300');
 figure()
 plot(0:720,a1_a, 0:720, a1_b)
 xlabel('\theta_2 (°)')
-ylabel('v_1 (m/s)')
+ylabel('a_1 (m/s^2)')
 xlim([0 720])
 legend('Biela original','Biela 10% más larga','Location','southeast')
 grid on
 print(gcf, 'cin_din_plots/Acel_embolo.jpg', '-djpeg', '-r300');
+
+% Velocidad del cdg de la biela en funcion de theta 2
+figure()
+plot(0:720,v3g_a, 0:720, v3g_b)
+xlabel('\theta_2 (°)')
+ylabel('v_{3g} (m/s)')
+xlim([0 720])
+legend('Biela original','Biela 10% más larga','Location','southeast')
+grid on
+print(gcf, 'cin_din_plots/Vel_biela.jpg', '-djpeg', '-r300');
+
+% Aceleracion del cdg de la biela en funcion de theta 2
+figure()
+plot(0:720,a3g_a, 0:720, a3g_b)
+xlabel('\theta_2 (°)')
+ylabel('a_{3g} (m/s^2)')
+xlim([0 720])
+legend('Biela original','Biela 10% más larga','Location','southeast')
+grid on
+print(gcf, 'cin_din_plots/Acel_biela.jpg', '-djpeg', '-r300');
+
+% Inclinacio de la biela en funcion de theta 2
+figure()
+plot(0:720,theta3_a, 0:720, theta3_b)
+xlabel('\theta_2 (°)')
+ylabel('\theta_3 (°)')
+xlim([0 720])
+legend('Biela original','Biela 10% más larga','Location','southeast')
+grid on
+print(gcf, 'cin_din_plots/Incl_biela.jpg', '-djpeg', '-r300');
 
 %% Apartados 2, 3 y 4
 clear
@@ -76,7 +106,7 @@ ylim([0.985*rpm 1.015*rpm])
 leg_strg = ['I_{tot}=', num2str(I_tot), ' kg m^2'];
 legend(leg_strg,'Location','best')
 grid on
-print(gcf, 'cin_din_plots/dw2dt.jpg', '-djpeg', '-r300');
+print(gcf, 'cin_din_plots/dtheta2dt.jpg', '-djpeg', '-r300');
 
 %% Apartado 6
 clear

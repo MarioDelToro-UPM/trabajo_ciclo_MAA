@@ -1,6 +1,6 @@
-clear
+%clear
 caso_1 = 'b'; % a - Biela original // b - Biela 10% mas larga
-caso_2 = 'b'; % a - adm 0.3 bar y 1200 rpm // b - adm 1 bar y 3000 rpm // c adm 1 bar y  9000 rpm(max)
+caso_2 = 'c'; % a - adm 0.3 bar y 1200 rpm // b - adm 1 bar y 3000 rpm // c adm 1 bar y  9000 rpm(max)
 
 % Variables para cinemática
 s1=62;
@@ -33,15 +33,17 @@ gamma2=1.3;
 miter=3;
 if 'a' == caso_2
     pa1 = 0.3;
+    pe1 = 1;
     rpm = 1200;
 elseif 'b' == caso_2
-    pa1 = 1;
+    pa1 = 2;
+    pe1 = 1.6;
     rpm = 3000;
 elseif 'c' == caso_2
-    pa1 = 1;
+    pa1 = 2;
+    pe1 = 1.6;
     rpm = 9000;
 end
-pe1 = pa1;
 rca=Ret_adm(rpm);
 aae=Avn_esc(rpm); 
 aicb=Initcomb(rpm);
